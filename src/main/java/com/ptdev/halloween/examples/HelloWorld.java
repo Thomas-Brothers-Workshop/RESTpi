@@ -1,4 +1,4 @@
-package com.ptdev.halloween.rest;
+package com.ptdev.halloween.examples;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
