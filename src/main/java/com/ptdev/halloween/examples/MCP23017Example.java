@@ -1,13 +1,16 @@
 package com.ptdev.halloween.examples;
 
+import java.io.IOException;
+
 import com.pi4j.gpio.extension.mcp.MCP23017GpioProvider;
 import com.pi4j.gpio.extension.mcp.MCP23017Pin;
 import com.pi4j.io.gpio.*;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
+import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import com.pi4j.io.i2c.I2CBus;
 
 public class MCP23017Example {
-	public void Example() {
+	public void Example() throws InterruptedException, IOException {
 System.out.println("<--Pi4J--> MCP23017 GPIO Example ... started.");
         
         // create gpio controller
