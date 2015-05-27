@@ -1,6 +1,8 @@
 package com.ptdev.halloween.io;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.pi4j.gpio.extension.mcp.MCP23017GpioProvider;
 import com.pi4j.io.gpio.GpioController;
@@ -23,6 +25,35 @@ public class Mcp23017 {
 		this.key = uniqueKey;
 		
 		//Setup provider
-		provider = new MCP23017GpioProvider(bus, address);
+		provider = new MCP23017GpioProvider(this.bus, address);
+	}
+	//Properties
+	public int getAddress() {
+		return address;
+	}
+
+	public void setAddress(int address) {
+		this.address = address;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}	
+	
+	//Functionality
+	public McpOutputPin getOutputPin(int pinIndex, boolean startState) {
+		return new McpOutputPin(gpio, provider, pinIndex, "MCP-Out-" + pinIndex, startState);
+	}
+	
+	public Map<Integer, McpOutputPin> getOutputPins(int[] pinIndexes, boolean startState) {
+		Map<Integer, McpOutputPin> pins = new HashMap<Integer, McpOutputPin>();
+		for (int pin : pinIndexes) {
+			pins.put(pin, getOutputPin(pin, startState));
+		}
+		return pins;
 	}
 }
