@@ -13,4 +13,11 @@ public class HelloWorld {
 		String response = "<h1>" + from + " says hello to " + toPerson + "</h1>";
 		return Response.status(200).entity(response).build();
 	}
+	
+	@GET
+	@Path("/test")
+	public Response test( @QueryParam("from") String from, @QueryParam("to") String toPerson) {
+		String response = "<h1>" + from + " says hello to " + toPerson + "</h1>";
+		return Response.status(200).entity(response).build();
+	}
 }
