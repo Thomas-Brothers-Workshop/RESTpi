@@ -1,4 +1,4 @@
-package com.ptdev.halloween.examples;
+package com.ptdev.pi.examples;
 
 import java.io.IOException;
 

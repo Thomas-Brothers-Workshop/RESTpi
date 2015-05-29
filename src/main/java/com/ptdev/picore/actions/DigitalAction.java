@@ -1,6 +1,6 @@
-package com.ptdev.halloween.process;
+package com.ptdev.picore.actions;
 
-import com.ptdev.halloween.io.McpOutputPin;
+import com.ptdev.picore.io.McpOutputPin;
 
 public class DigitalAction extends BaseAction {
 	

@@ -1,4 +1,4 @@
-package com.ptdev.halloween.process;
+package com.ptdev.picore.actions;
 
 public abstract class BaseAction {
 	//Types

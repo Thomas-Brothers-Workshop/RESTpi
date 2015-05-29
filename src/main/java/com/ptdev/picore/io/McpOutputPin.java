@@ -1,4 +1,4 @@
-package com.ptdev.halloween.io;
+package com.ptdev.picore.io;
 
 import com.pi4j.gpio.extension.mcp.MCP23017GpioProvider;
 import com.pi4j.gpio.extension.mcp.MCP23017Pin;
