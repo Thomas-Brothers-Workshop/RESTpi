@@ -27,6 +27,9 @@ public class Sequence {
 	
 	//Execution
 	public void start() {
-		//TODO need to figure out how we are going to multi-thread this
+		//Run in sequence
+		for(int a = 0; a < sequence.size(); a++) {
+			sequence.get(a).start(); //TODO this should actually call a thread that calls the action
+		}
 	}
 }
