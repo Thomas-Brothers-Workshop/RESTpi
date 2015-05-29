@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Sequence {
 
-	private Map<Integer, BaseAction> sequence = new HashMap<Integer, BaseAction>();
+	private Map<Integer, ActionRunner> sequence = new HashMap<Integer, ActionRunner>();
 	private final String sequenceName;
 	
 	//Construct
@@ -17,7 +17,7 @@ public class Sequence {
 	}
 	
 	//Action set
-	public void addAction(BaseAction action) {
+	public void addAction(ActionRunner action) {
 		//Put action next in line
 		int index = (sequence.isEmpty()) ? 0 : sequence.size();
 		
@@ -29,7 +29,7 @@ public class Sequence {
 	public void start() {
 		//Run in sequence
 		for(int a = 0; a < sequence.size(); a++) {
-			sequence.get(a).start(); //TODO this should actually call a thread that calls the action
+			sequence.get(a).start();
 		}
 	}
 }
