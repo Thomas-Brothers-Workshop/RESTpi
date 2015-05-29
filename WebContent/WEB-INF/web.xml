@@ -9,7 +9,7 @@
 	<!-- Auto scan REST service -->
 	<context-param>
 		<param-name>resteasy.resources</param-name>
-		<param-value>com.ptdev.halloween.rest.HelloWorld</param-value>
+		<param-value>com.ptdev.rest.endpoints.Command</param-value>
 	</context-param>
 
 	<!-- this should be the same URL pattern as the servlet-mapping property -->
