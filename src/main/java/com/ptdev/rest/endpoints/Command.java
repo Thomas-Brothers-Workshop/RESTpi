@@ -9,13 +9,11 @@ import com.ptdev.picore.actions.*;
 
 @Path("/cmd")
 public class Command {
-	@GET
-	@Path("/{sequence}")
-	@Produces("application/json")
-	public Sequence sayHello( @PathParam("sequence") String seq) {
-		Sequence testSeq = new Sequence();
-		testSeq.addAction(new ActionRunner("test",new DigitalAction()));
-		
-		return testSeq;
-	}
+//	@GET
+//	@Path("/{sequence}")
+//	@Produces("application/json")
+//	public Sequence sayHello( @PathParam("sequence") String seq) {
+//
+//		return testSeq;
+//	}
 }
