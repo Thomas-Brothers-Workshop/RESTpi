@@ -14,28 +14,42 @@ public class DigitalAction extends BaseAction {
 	private IoState state;
 	
 	//Construction
+	public DigitalAction(McpOutputPin pin, IoState setState, long timeMill, long delayMill) {
+		this.construct(pin, setState, timeMill, delayMill);
+	}
+	
 	public DigitalAction(McpOutputPin pin, IoState setState, long timeMill) {
-		this.construct(pin, setState, timeMill);
+		this.construct(pin, setState, timeMill, 0);
 	}
 	
 	public DigitalAction(McpOutputPin pin, IoState setState) {
-		this.construct(pin, setState, -1);
+		this.construct(pin, setState, -1, 0);
 	}
 	
 	public DigitalAction(McpOutputPin pin) {
-		this.construct(pin, IoState.TOGGLE, -1);
+		this.construct(pin, IoState.TOGGLE, -1, 0);
 	}
 	
-	private void construct(McpOutputPin pin, IoState setState,long time) {
+	private void construct(McpOutputPin pin, IoState setState,long time, long delay) {
 		this.actionType = ActionType.IO;
 		this.pin = pin;
 		this.state = setState;
 		this.actionTime = time;
+		this.actionDelay = delay;
 		this.actionKey = "IO-" + time;
 	}
 
 	@Override
 	public void start() {
+		//Delay
+		try {
+			this.delay(actionDelay);
+		} catch(Exception e) {
+			System.out.println("Thread error. Aborting action");
+			return;
+		}
+		
+		//Switch area
 		switch (this.state) {
 			case ON:
 				pin.turnOn();

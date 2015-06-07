@@ -4,12 +4,12 @@ public abstract class BaseAction {
 	//Types
 	public enum ActionType {
 		IO,
-		SOUND,
-		DELAY
+		SOUND
 	}
 	
 	protected ActionType actionType;
 	protected long actionTime;
+	protected long actionDelay;
 	protected String actionKey;
 	
 	//Get Info
@@ -24,4 +24,10 @@ public abstract class BaseAction {
 	}
 	
 	public abstract void start();
+	
+	public void delay(long milliseconds) throws InterruptedException {
+		if(milliseconds > 0) {
+			Thread.sleep(milliseconds);
+		}
+	}
 }
