@@ -42,6 +42,12 @@
 			<artifactId>pi4j-device</artifactId>
 			<version>1.0</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.esotericsoftware.yamlbeans</groupId>
+			<artifactId>yamlbeans</artifactId>
+			<version>1.09</version>
+		</dependency>
 	</dependencies>
 	
 	<build>
