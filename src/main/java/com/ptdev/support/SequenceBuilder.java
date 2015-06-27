@@ -1,8 +1,8 @@
 package com.ptdev.support;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+import java.util.List;
 
 public class SequenceBuilder {
 	public String name;
-	public List actions;
+	public List<ActionBuilder> actions;
 }

@@ -4,7 +4,6 @@ package com.ptdev.support;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Map;
 
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
@@ -32,12 +31,11 @@ public class ConfigReader {
 		}
 	}
 	
+	//TODO still need to produce a sequence
 	public void readConfig() throws FileNotFoundException, YamlException {
 		YamlReader reader = new YamlReader(new FileReader(String.format("%s/%s.yaml", this.configPath,this.name)));
-		Object object = reader.read();
-		System.out.println(object);
-		Map map = (Map)object;
-		System.out.println(map.get("address"));
+		SequenceBuilder object = reader.read(SequenceBuilder.class);
+		System.out.println("test");
 	}
 	
 //	public Sequence getSequence() {
