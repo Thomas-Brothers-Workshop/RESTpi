@@ -28,6 +28,7 @@ public class Sequence {
 	//Execution
 	public void start() {
 		//Run in sequence
+		System.out.println(String.format("Starting '%s' sequence", this.sequenceName));
 		for(int a = 0; a < sequence.size(); a++) {
 			sequence.get(a).start();
 		}
