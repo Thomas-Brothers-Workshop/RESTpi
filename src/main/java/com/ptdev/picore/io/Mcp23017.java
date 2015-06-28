@@ -9,31 +9,54 @@ import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.i2c.I2CBus;
 
 public class Mcp23017 {
+	
+	//Address options
+	public enum ByteAddress {
+		ONE(0x20,0),
+		TWO(0x20,1),
+		THREE(0x20,2),
+		FOUR(0x20,3),
+		FIVE(0x20,4),
+		SIX(0x20,5),
+		SEVEN(0x20,6);
+		
+		private int byteAddress;
+		private int multi;
+		
+		ByteAddress(int address, int multiplier) {
+			this.byteAddress = address;
+			this.multi = multiplier;
+		}
+		public int getAddress() {
+			return this.byteAddress;
+		}
+		public int getMutiplier() {
+			return this.multi;
+		}
+	}
 
-	private I2CBus bus;
-	private int address;
+	//Properties
+	private int bus;
+	private ByteAddress address;
 	private String key;
+	public Map<Integer, McpOutputPin> outputPins;
 	
 	//Provider
 	private final GpioController gpio;
 	private final MCP23017GpioProvider provider;
 	
-	public Mcp23017(GpioController gpioControl, I2CBus bus, int byteAddress, String uniqueKey) throws IOException {
+	public Mcp23017(GpioController gpioControl, ByteAddress chipAdress, String uniqueKey) throws IOException {
 		this.gpio = gpioControl;
-		this.bus = bus;
-		this.address = byteAddress;
+		this.bus = I2CBus.BUS_0;
+		this.address = chipAdress;
 		this.key = uniqueKey;
 		
 		//Setup provider
-		provider = new MCP23017GpioProvider(this.bus, address);
+		provider = new MCP23017GpioProvider(this.bus, address.byteAddress);
 	}
 	//Properties
-	public int getAddress() {
+	public ByteAddress getAddress() {
 		return address;
-	}
-
-	public void setAddress(int address) {
-		this.address = address;
 	}
 
 	public String getKey() {
@@ -45,14 +68,21 @@ public class Mcp23017 {
 	}	
 	
 	//Functionality
-	public McpOutputPin getOutputPin(int pinIndex, boolean startState) {
+	public Mcp23017 setAllPinsOutput() {
+		int[] allPins = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+		this.outputPins = getOutputPins(allPins, false);
+		return this;
+	}
+	
+	private McpOutputPin setOutputPin(int pinIndex, boolean startState) {
 		return new McpOutputPin(gpio, provider, pinIndex, "MCP-Out-" + pinIndex, startState);
 	}
 	
-	public Map<Integer, McpOutputPin> getOutputPins(int[] pinIndexes, boolean startState) {
+	private Map<Integer, McpOutputPin> getOutputPins(int[] pinIndexes, boolean startState) {
 		Map<Integer, McpOutputPin> pins = new HashMap<Integer, McpOutputPin>();
 		for (int pin : pinIndexes) {
-			pins.put(pin, getOutputPin(pin, startState));
+			
+			pins.put((pin + 1)+(address.multi*16), setOutputPin(pin, startState));
 		}
 		return pins;
 	}

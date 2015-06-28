@@ -1,14 +1,12 @@
 name: Test Sequence
 actions:
  - type: io
-   bus: 0
    pin: 0
-   state: true
+   set: on
    delay: 0
    time: 1000
  - type: io
-   bus: 0
    pin: 1
-   state: true
+   set: toggle
    delay: 500
    time: 2000

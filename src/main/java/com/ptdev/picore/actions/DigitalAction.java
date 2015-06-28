@@ -7,7 +7,20 @@ public class DigitalAction extends BaseAction {
 	public enum IoState {
 		ON,
 		OFF,
-		TOGGLE
+		TOGGLE;
+		
+		public static IoState getStateByString(String state) {
+			switch (state.toLowerCase()) {
+			case "on":
+				return ON;
+			case "off":
+				return OFF;
+			case "toggle":
+				return TOGGLE;
+			default:
+				return OFF;
+			}
+		}
 	}
 	
 	private McpOutputPin pin;

@@ -7,8 +7,7 @@ import java.io.FileReader;
 
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
-
-import exceptions.ConfigDirectoryException;
+import com.ptdev.exceptions.ConfigDirectoryException;
 
 public class ConfigReader {
 	

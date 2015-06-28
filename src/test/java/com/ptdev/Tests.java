@@ -5,9 +5,8 @@ import java.io.FileNotFoundException;
 import org.junit.Test;
 
 import com.esotericsoftware.yamlbeans.YamlException;
+import com.ptdev.exceptions.ConfigDirectoryException;
 import com.ptdev.support.ConfigReader;
-
-import exceptions.ConfigDirectoryException;
 
 public class Tests {
 	

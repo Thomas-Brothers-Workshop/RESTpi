@@ -1,4 +1,4 @@
-package exceptions;
+package com.ptdev.exceptions;
 
 public class ConfigDirectoryException extends Exception{
   /**
