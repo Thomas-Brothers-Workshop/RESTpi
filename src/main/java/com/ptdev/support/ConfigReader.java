@@ -8,14 +8,19 @@ import java.io.FileReader;
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
 import com.ptdev.exceptions.ConfigDirectoryException;
+import com.ptdev.exceptions.InvalidConfigSetupException;
+import com.ptdev.picore.actions.Sequence;
+import com.ptdev.picore.io.Mcp23017;
 
 public class ConfigReader {
 	
 	private final String configPath;
 	private final String name;
+	private final Mcp23017 mcpChip;
 	
-	public ConfigReader(String name) throws ConfigDirectoryException {
+	public ConfigReader(String name, Mcp23017 mcpChip) throws ConfigDirectoryException {
 		this.name = name;
+		this.mcpChip = mcpChip;
 		this.configPath = System.getProperty("config_dir");
 		
 		//Check for property
@@ -30,14 +35,9 @@ public class ConfigReader {
 		}
 	}
 	
-	//TODO still need to produce a sequence
-	public void readConfig() throws FileNotFoundException, YamlException {
+	public Sequence getSequence() throws FileNotFoundException, YamlException, InvalidConfigSetupException {
 		YamlReader reader = new YamlReader(new FileReader(String.format("%s/%s.yaml", this.configPath,this.name)));
 		SequenceBuilder object = reader.read(SequenceBuilder.class);
-		System.out.println("test");
+		return object.build(mcpChip);
 	}
-	
-//	public Sequence getSequence() {
-//		
-//	}
 }

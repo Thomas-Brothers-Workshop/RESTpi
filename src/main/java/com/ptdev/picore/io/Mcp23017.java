@@ -42,17 +42,21 @@ public class Mcp23017 {
 	public Map<Integer, McpOutputPin> outputPins;
 	
 	//Provider
-	private final GpioController gpio;
-	private final MCP23017GpioProvider provider;
+	private GpioController gpio;
+	private MCP23017GpioProvider provider;
 	
-	public Mcp23017(GpioController gpioControl, ByteAddress chipAdress, String uniqueKey) throws IOException {
+	public Mcp23017(GpioController gpioControl, ByteAddress chipAdress, String uniqueKey) {
 		this.gpio = gpioControl;
 		this.bus = I2CBus.BUS_0;
 		this.address = chipAdress;
 		this.key = uniqueKey;
 		
 		//Setup provider
-		provider = new MCP23017GpioProvider(this.bus, address.byteAddress);
+		try {
+			provider = new MCP23017GpioProvider(this.bus, address.byteAddress);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	//Properties
 	public ByteAddress getAddress() {
