@@ -3,7 +3,7 @@
   <display-name>rest-o-ween</display-name>
   <servlet-mapping>
 		<servlet-name>resteasy-servlet</servlet-name>
-		<url-pattern>/perry/*</url-pattern>
+		<url-pattern>/restio/*</url-pattern>
 	</servlet-mapping>
 
 	<!-- Auto scan REST service -->
@@ -15,13 +15,17 @@
 	<!-- this should be the same URL pattern as the servlet-mapping property -->
 	<context-param>
 		<param-name>resteasy.servlet.mapping.prefix</param-name>
-		<param-value>/perry</param-value>
+		<param-value>/restio</param-value>
 	</context-param>
 
 	<listener>
 		<listener-class>
 			org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap
 			</listener-class>
+	</listener>
+	
+	<listener>
+  	  <listener-class>com.ptdev.support.Config</listener-class>
 	</listener>
 
 	<servlet>
