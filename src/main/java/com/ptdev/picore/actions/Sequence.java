@@ -23,6 +23,7 @@ public class Sequence {
 		
 		//Add action
 		sequence.put(index, new ActionRunner(String.format("Action index: %n Sequence: %s", index, sequenceName), action));
+		System.out.println(String.format("Adding action, index: %n sequence: %s", index, sequenceName));
 	}
 	
 	//Execution

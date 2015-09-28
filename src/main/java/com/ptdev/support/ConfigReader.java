@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Map;
 
+import sun.util.logging.resources.logging;
+
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
 import com.ptdev.exceptions.ConfigDirectoryException;
@@ -23,6 +25,7 @@ public class ConfigReader {
 		this.name = name;
 		this.mcpChip = mcpChip;
 		this.configPath = System.getProperty("config_dir");
+		System.out.println(String.format("Looking for configuration in '%s'", configPath));
 		
 		//Check for property
 		if(null == this.configPath) {
@@ -37,7 +40,8 @@ public class ConfigReader {
 	}
 	
 	public Sequence getSequence() throws FileNotFoundException, YamlException, InvalidConfigSetupException {
-		YamlReader reader = new YamlReader(new FileReader(String.format("%s/%s.yaml", this.configPath,this.name)));
+		System.out.println(String.format("Looking for configuration file '%s'", this.name));
+		YamlReader reader = new YamlReader(new FileReader(String.format("%s/%s.yaml", this.configPath, this.name)));
 		SequenceBuilder object = reader.read(SequenceBuilder.class);
 		return object.build(mcpChip);
 	}

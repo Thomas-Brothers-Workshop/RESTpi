@@ -54,6 +54,13 @@ public class DigitalAction extends BaseAction {
 
 	@Override
 	public void start() {
+		//Report
+		System.out.println(String.format("Action | PIN: %d | STATE: %s | TIME: %d | DELAY: %d", 
+				pin.getPinIndex(), 
+				state.toString(),
+				actionTime, 
+				actionDelay));
+		
 		//Delay
 		try {
 			this.delay(actionDelay);

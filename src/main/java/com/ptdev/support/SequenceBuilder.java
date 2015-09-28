@@ -13,6 +13,7 @@ public class SequenceBuilder {
 	
 	public Sequence build(Map<Integer, Mcp23017> mcpChip) throws InvalidConfigSetupException {
 		Sequence seq = new Sequence(name);
+		System.out.println(String.format("Building sequence '%s'", name));
 		for(ActionBuilder action : actions) {
 			seq.addAction(action.build(mcpChip));
 		}

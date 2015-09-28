@@ -24,6 +24,7 @@ public class ActionRunner implements Runnable {
 	      {
 	         t = new Thread (this, this.name);
 	         t.start ();
+	         System.out.println(String.format("Started action thread '%s'", this.name));
 	      }
 	   } 
 }
