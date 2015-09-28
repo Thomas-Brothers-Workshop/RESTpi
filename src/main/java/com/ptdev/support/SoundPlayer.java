@@ -34,6 +34,13 @@ public class SoundPlayer implements LineListener {
     	System.out.println("Starting sound file: " + audioFilePath);
     	this.currAudioFile = audioFilePath;
         File audioFile = new File(audioFilePath);
+        
+        //If file doesn't exist, exit player and tell action play is done
+        if (!audioFile.exists()) {
+        	this.playCompleted = true;
+        	return;
+        }
+        
  
         try {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
@@ -47,13 +54,13 @@ public class SoundPlayer implements LineListener {
              
         } catch (UnsupportedAudioFileException ex) {
             System.out.println("The specified audio file is not supported.");
-            ex.printStackTrace();
+            this.playCompleted = true;
         } catch (LineUnavailableException ex) {
             System.out.println("Audio line for playing back is unavailable.");
-            ex.printStackTrace();
+            this.playCompleted = true;
         } catch (IOException ex) {
             System.out.println("Error playing the audio file.");
-            ex.printStackTrace();
+            this.playCompleted = true;
         }
          
     }
@@ -70,6 +77,7 @@ public class SoundPlayer implements LineListener {
              
         } else if (type == LineEvent.Type.STOP) {
             playCompleted = true;
+            currClip.stop();
             System.out.println("Playback completed.");
         }
  
