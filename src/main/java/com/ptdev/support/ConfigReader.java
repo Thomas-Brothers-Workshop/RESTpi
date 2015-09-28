@@ -4,6 +4,7 @@ package com.ptdev.support;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Map;
 
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
@@ -16,9 +17,9 @@ public class ConfigReader {
 	
 	private final String configPath;
 	private final String name;
-	private final Mcp23017 mcpChip;
+	private final Map<Integer, Mcp23017> mcpChip;
 	
-	public ConfigReader(String name, Mcp23017 mcpChip) throws ConfigDirectoryException {
+	public ConfigReader(String name, Map<Integer, Mcp23017> mcpChip) throws ConfigDirectoryException {
 		this.name = name;
 		this.mcpChip = mcpChip;
 		this.configPath = System.getProperty("config_dir");

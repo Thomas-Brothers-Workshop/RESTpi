@@ -1,6 +1,7 @@
 package com.ptdev.rest.endpoints;
 
 import java.io.FileNotFoundException;
+import java.util.Map;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -20,13 +21,19 @@ public class Command {
 	//Fix chip class to contain all chips
 	public Mcp23017 chipOne = new Mcp23017(GpioFactory.getInstance(), ByteAddress.ONE, "one").setAllPinsOutput();
 	public Mcp23017 chipTwo = new Mcp23017(GpioFactory.getInstance(), ByteAddress.TWO, "one").setAllPinsOutput();
+	public Map<Integer, Mcp23017> mcpMap;
+	
+	public Command() {
+		mcpMap.put(1, chipOne);
+		mcpMap.put(2, chipTwo);
+	}
 	
 	@POST
 	@Path("/{sequence}")
 	public Response sayHello( @PathParam("sequence") String seq) {
 		//Run sequence based on name
 		try {
-			new ConfigReader(seq, chipOne).getSequence().start();
+			new ConfigReader(seq, mcpMap).getSequence().start();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

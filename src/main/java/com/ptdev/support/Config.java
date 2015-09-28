@@ -3,7 +3,9 @@ package com.ptdev.support;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+
 public class Config implements ServletContextListener {
+	
     public void contextInitialized(ServletContextEvent event) {
         // Do stuff during webapp's startup.
     }
