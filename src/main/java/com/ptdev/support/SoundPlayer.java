@@ -30,7 +30,7 @@ public class SoundPlayer implements LineListener {
      * Play a given audio file.
      * @param audioFilePath Path of the audio file.
      */
-    void play(String audioFilePath) {
+    public void play(String audioFilePath) {
     	System.out.println("Starting sound file: " + audioFilePath);
     	this.currAudioFile = audioFilePath;
         File audioFile = new File(audioFilePath);
@@ -63,6 +63,10 @@ public class SoundPlayer implements LineListener {
             this.playCompleted = true;
         }
          
+    }
+    
+    public boolean isSoundDone() {
+    	return playCompleted;
     }
      
     /**
