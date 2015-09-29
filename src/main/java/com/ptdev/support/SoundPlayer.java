@@ -24,7 +24,6 @@ public class SoundPlayer implements LineListener {
      */
     boolean playCompleted = false;
     private Clip currClip;
-    private String currAudioFile = "";
      
     /**
      * Play a given audio file.
@@ -32,7 +31,6 @@ public class SoundPlayer implements LineListener {
      */
     public void play(String audioFilePath) {
     	System.out.println("Starting sound file: " + audioFilePath);
-    	this.currAudioFile = audioFilePath;
         File audioFile = new File(audioFilePath);
         
         //If file doesn't exist, exit player and tell action play is done
@@ -40,8 +38,6 @@ public class SoundPlayer implements LineListener {
         	this.playCompleted = true;
         	return;
         }
-        
- 
         try {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
             AudioFormat format = audioStream.getFormat();
@@ -61,8 +57,7 @@ public class SoundPlayer implements LineListener {
         } catch (IOException ex) {
             System.out.println("Error playing the audio file.");
             this.playCompleted = true;
-        }
-         
+        }      
     }
     
     public boolean isSoundDone() {
@@ -75,15 +70,12 @@ public class SoundPlayer implements LineListener {
     @Override
     public void update(LineEvent event) {
         LineEvent.Type type = event.getType();
-         
         if (type == LineEvent.Type.START) {
-            System.out.println("Playback started.");
-             
+            System.out.println("Playback started.");    
         } else if (type == LineEvent.Type.STOP) {
             playCompleted = true;
             currClip.stop();
             System.out.println("Playback completed.");
         }
- 
     }
 }
