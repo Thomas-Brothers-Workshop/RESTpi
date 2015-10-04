@@ -20,12 +20,17 @@ import com.ptdev.support.ConfigReader;
 @Path("/cmd")
 public class Command {
 	//Fix chip class to contain all chips
-	public Mcp23017 chipOne = new Mcp23017(GpioFactory.getInstance(), ByteAddress.ONE, "one").setAllPinsOutput();
-	public Mcp23017 chipTwo = new Mcp23017(GpioFactory.getInstance(), ByteAddress.TWO, "one").setAllPinsOutput();
+	public Mcp23017 chipOne;
+	public Mcp23017 chipTwo; 
 	public Map<Integer, Mcp23017> mcpMap;
 	
 	public Command() {
 		try {
+			//Chips
+			chipOne = new Mcp23017(GpioFactory.getInstance(), ByteAddress.ONE, "one").setAllPinsOutput();
+			//chipTwo = new Mcp23017(GpioFactory.getInstance(), ByteAddress.TWO, "one").setAllPinsOutput();
+			
+			//Map
 			mcpMap.put(1, chipOne);
 //			mcpMap.put(2, chipTwo);
 		} catch (NullPointerException e) {
