@@ -25,8 +25,13 @@ public class Command {
 	public Map<Integer, Mcp23017> mcpMap;
 	
 	public Command() {
-		mcpMap.put(1, chipOne);
-		mcpMap.put(2, chipTwo);
+		try {
+			mcpMap.put(1, chipOne);
+			mcpMap.put(2, chipTwo);
+		} catch (NullPointerException e) {
+			System.err.println("Looks like I couldn't find the IO expanders.");
+			e.printStackTrace();
+		}
 	}
 	
 	@POST
