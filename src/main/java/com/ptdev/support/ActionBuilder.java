@@ -6,6 +6,8 @@ import com.ptdev.picore.actions.DigitalAction;
 import com.ptdev.picore.actions.DigitalAction.IoState;
 import com.ptdev.picore.actions.SoundAction.SoundType;
 import com.ptdev.picore.actions.SoundAction;
+import com.ptdev.picore.io.IOsupport;
+import com.ptdev.picore.io.IoContext;
 import com.ptdev.picore.io.Mcp23017;
 
 public class ActionBuilder {
@@ -15,7 +17,8 @@ public class ActionBuilder {
 	public long delay;
 	public long time;
 	
-	public BaseAction build(Mcp23017 mcpChip) throws InvalidConfigSetupException {
+	public BaseAction build() throws InvalidConfigSetupException {
+		Mcp23017 mcpChip = IoContext.getInstance().getMcpMap().get(IOsupport.getChipIndex(pin));
 		System.out.println("Building action to chip: " + mcpChip.getAddress().toString());
 		switch (this.type.toLowerCase()) {
 		case "io":

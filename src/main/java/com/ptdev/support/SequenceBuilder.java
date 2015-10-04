@@ -16,9 +16,8 @@ public class SequenceBuilder {
 		Sequence seq = new Sequence(name);
 		System.out.println(String.format("Building sequence '%s'", name));
 		System.out.println("Found " + actions.size() + " actions in sequence.");
-		for(ActionBuilder action : actions) {
-			Mcp23017 chip = IoContext.getInstance().getMcpMap().get(IOsupport.getChipIndex(action.pin));
-			seq.addAction(action.build(chip));
+		for(int i = 0; i < actions.size(); i++) {
+			seq.addAction(actions.get(i).build());
 		}
 		return seq;
 	}
