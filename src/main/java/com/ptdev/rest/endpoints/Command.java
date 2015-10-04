@@ -23,7 +23,7 @@ public class Command {
 		//Run sequence based on name
 		try {
 			IoContext.getInstance();
-			new ConfigReader(seq, IoContext.getInstance().getMcpMap()).getSequence().start();
+			new ConfigReader(seq).getSequence().start();
 		} catch (FileNotFoundException e) {
 			return Response.status(404).entity("One of the files was not found: Stack - " + e.toString()).build();
 		} catch (YamlException e) {

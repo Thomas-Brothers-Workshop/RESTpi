@@ -2,9 +2,6 @@ package com.ptdev.support;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
-import org.codehaus.jackson.io.IOContext;
-
 import com.ptdev.picore.io.IoContext;
 
 
