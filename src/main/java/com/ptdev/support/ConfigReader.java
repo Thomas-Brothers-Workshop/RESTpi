@@ -21,7 +21,7 @@ public class ConfigReader {
 	public ConfigReader(String name, Map<Integer, Mcp23017> mcpChip) throws ConfigDirectoryException {
 		this.name = name;
 		this.mcpChip = mcpChip;
-		this.configPath = System.getProperty("config_dir");
+		this.configPath = "/home/pi/PropSequences/";
 		System.out.println(String.format("Looking for configuration in '%s'", configPath));
 		
 		//Check for property
