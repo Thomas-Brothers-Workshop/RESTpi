@@ -3,6 +3,7 @@ package com.ptdev.rest.endpoints;
 import java.io.FileNotFoundException;
 import java.util.Map;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -48,5 +49,10 @@ public class Command {
 		
 		//If no errors occurred then all should be well
 		return Response.status(200).entity(String.format("The '%s' command has been run successfully", seq)).build();
+	}
+	
+	@GET
+	public Response comTest() {
+		return Response.status(200).entity("This shit is working.").build();
 	}
 }
