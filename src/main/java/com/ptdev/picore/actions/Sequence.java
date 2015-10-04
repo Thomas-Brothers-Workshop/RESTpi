@@ -2,7 +2,11 @@ package com.ptdev.picore.actions;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * Sequences wrap actions together and run in line
+ * @author perry
+ *
+ */
 public class Sequence {
 
 	private Map<Integer, ActionRunner> sequence = new HashMap<Integer, ActionRunner>();

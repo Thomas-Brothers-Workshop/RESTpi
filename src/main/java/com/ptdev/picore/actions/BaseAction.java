@@ -1,5 +1,10 @@
 package com.ptdev.picore.actions;
 
+/**
+ * This is the super class for all actions being created
+ * @author perry
+ *
+ */
 public abstract class BaseAction {
 	//Types
 	public enum ActionType {
@@ -23,6 +28,9 @@ public abstract class BaseAction {
 		return actionKey;
 	}
 	
+	/**
+	 * All actions must have a start method that contains their base process
+	 */
 	public abstract void start();
 	
 	public void delay(long milliseconds) throws InterruptedException {

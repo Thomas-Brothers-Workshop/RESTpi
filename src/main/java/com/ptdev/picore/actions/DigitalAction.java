@@ -2,6 +2,11 @@ package com.ptdev.picore.actions;
 
 import com.ptdev.picore.io.McpOutputPin;
 
+/**
+ * This class handles actions to turn pins on or off with parameters
+ * @author perry
+ *
+ */
 public class DigitalAction extends BaseAction {
 	
 	public enum IoState {

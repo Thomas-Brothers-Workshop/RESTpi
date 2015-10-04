@@ -1,5 +1,10 @@
 package com.ptdev.picore.actions;
 
+/**
+ * This class wraps around actions to run them in different threads
+ * @author perry
+ *
+ */
 public class ActionRunner implements Runnable {
 	
 	private String name;
@@ -18,6 +23,9 @@ public class ActionRunner implements Runnable {
 		this.action.start();
 	}
 	
+	/**
+	 * Threads the action 'start' method
+	 */
 	public void start ()
 	   {
 	      if (t == null)
