@@ -19,7 +19,6 @@ public class ActionBuilder {
 	
 	public BaseAction build() throws InvalidConfigSetupException {
 		Mcp23017 mcpChip = IoContext.getInstance().getMcpMap().get(IOsupport.getChipIndex(pin));
-		System.out.println("Building action to chip: " + mcpChip.getAddress().toString());
 		switch (this.type.toLowerCase()) {
 		case "io":
 			return new DigitalAction(mcpChip.outputPins.get(pin), IoState.getStateByString(set), time, delay);
