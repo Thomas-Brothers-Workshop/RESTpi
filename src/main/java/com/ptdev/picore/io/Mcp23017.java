@@ -47,7 +47,7 @@ public class Mcp23017 {
 	
 	public Mcp23017(GpioController gpioControl, ByteAddress chipAdress, String uniqueKey) {
 		this.gpio = gpioControl;
-		this.bus = I2CBus.BUS_1;
+		this.bus = I2CBus.BUS_0;
 		this.address = chipAdress;
 		this.key = uniqueKey;
 		
