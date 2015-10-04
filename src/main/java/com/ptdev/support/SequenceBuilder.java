@@ -10,14 +10,14 @@ import com.ptdev.picore.io.Mcp23017;
 
 public class SequenceBuilder {
 	public String name;
-	public List<ActionBuilder> actions;
+	public ActionBuilder[] actions;
 	
 	public Sequence build() throws InvalidConfigSetupException {
 		Sequence seq = new Sequence(name);
 		System.out.println(String.format("Building sequence '%s'", name));
-		System.out.println("Found " + actions.size() + " actions in sequence.");
-		for(int i = 0; i < actions.size(); i++) {
-			seq.addAction(actions.get(i).build());
+		System.out.println("Found " + actions.length + " actions in sequence.");
+		for(int i = 0; i < actions.length; i++) {
+			seq.addAction(actions[i].build());
 		}
 		return seq;
 	}
