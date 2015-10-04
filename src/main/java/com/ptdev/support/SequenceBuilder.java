@@ -6,6 +6,7 @@ import com.ptdev.exceptions.InvalidConfigSetupException;
 import com.ptdev.picore.actions.Sequence;
 import com.ptdev.picore.io.IOsupport;
 import com.ptdev.picore.io.IoContext;
+import com.ptdev.picore.io.Mcp23017;
 
 public class SequenceBuilder {
 	public String name;
@@ -14,8 +15,10 @@ public class SequenceBuilder {
 	public Sequence build() throws InvalidConfigSetupException {
 		Sequence seq = new Sequence(name);
 		System.out.println(String.format("Building sequence '%s'", name));
+		System.out.println("Found " + actions.size() + " actions in sequence.");
 		for(ActionBuilder action : actions) {
-			seq.addAction(action.build(IoContext.getInstance().getMcpMap().get(IOsupport.getChipIndex(action.pin))));
+			Mcp23017 chip = IoContext.getInstance().getMcpMap().get(IOsupport.getChipIndex(action.pin));
+			seq.addAction(action.build(chip));
 		}
 		return seq;
 	}
