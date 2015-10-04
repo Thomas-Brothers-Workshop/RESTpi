@@ -27,7 +27,7 @@ public class Command {
 	public Command() {
 		try {
 			mcpMap.put(1, chipOne);
-			mcpMap.put(2, chipTwo);
+//			mcpMap.put(2, chipTwo);
 		} catch (NullPointerException e) {
 			System.err.println("Looks like I couldn't find the IO expanders.");
 			e.printStackTrace();

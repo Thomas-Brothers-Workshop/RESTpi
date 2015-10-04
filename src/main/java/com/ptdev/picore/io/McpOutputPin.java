@@ -23,6 +23,7 @@ public class McpOutputPin {
 		this.mcpProvider = mcpProvider;
 		this.pinIndex = index;
 		this.pinName = pinName;
+		System.out.println("Setting output pin: " + getMcpPinByIndex(index));
 		this.pin = gpio.provisionDigitalOutputPin(this.mcpProvider, getMcpPinByIndex(index), pinName, getPinStateByBool(startState));
 	}
 	
