@@ -26,8 +26,8 @@ public class Sequence {
 		int index = (sequence.isEmpty()) ? 0 : sequence.size();
 		
 		//Add action
-		sequence.put(index, new ActionRunner(String.format("Action index: %n Sequence: %s", index, sequenceName), action));
 		System.out.println(String.format("Adding action, index: %n sequence: %s", index, sequenceName));
+		sequence.put(index, new ActionRunner(String.format("Action index: %n Sequence: %s", index, sequenceName), action));
 	}
 	
 	//Execution

@@ -33,7 +33,8 @@ public class Command {
 		} catch (ConfigDirectoryException e) {
 			return Response.status(404).entity("Config file did not exist or was not set: Stack - " + e.toString()).build();
 		} catch (Exception e) {
-			return Response.status(500).entity("Oh shit! IDK LOLZ: Stack - " + e.toString()).build();
+			e.printStackTrace();
+			return Response.status(500).entity("Oh shit! IDK LOLZ. See logs").build();
 		}
 		
 		//If no errors occurred then all should be well

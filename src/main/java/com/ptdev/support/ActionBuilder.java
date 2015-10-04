@@ -16,6 +16,7 @@ public class ActionBuilder {
 	public long time;
 	
 	public BaseAction build(Mcp23017 mcpChip) throws InvalidConfigSetupException {
+		System.out.println("Building action to chip: " + mcpChip.getAddress().toString());
 		switch (this.type.toLowerCase()) {
 		case "io":
 			return new DigitalAction(mcpChip.outputPins.get(pin), IoState.getStateByString(set), time, delay);
