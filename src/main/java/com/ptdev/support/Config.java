@@ -3,11 +3,16 @@ package com.ptdev.support;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.codehaus.jackson.io.IOContext;
+
+import com.ptdev.picore.io.IoContext;
+
 
 public class Config implements ServletContextListener {
 	
     public void contextInitialized(ServletContextEvent event) {
-        // Do stuff during webapp's startup.
+        //Start context
+    	IoContext.getInstance();
     }
     public void contextDestroyed(ServletContextEvent event) {
         // Do stuff during webapp's shutdown.
