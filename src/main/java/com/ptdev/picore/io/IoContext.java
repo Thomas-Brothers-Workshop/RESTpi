@@ -1,5 +1,6 @@
 package com.ptdev.picore.io;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.pi4j.io.gpio.GpioController;
@@ -14,7 +15,7 @@ public class IoContext {
 	private GpioController gpio;
 	private Mcp23017 chipOne;
 	//private Mcp23017 chipTwo; 
-	private Map<Integer, Mcp23017> mcpMap;
+	private Map<Integer, Mcp23017> mcpMap = new HashMap<Integer, Mcp23017>();;
 	private GpioPinDigitalOutput testPin;
 	
 	private IoContext() {
@@ -41,8 +42,10 @@ public class IoContext {
 	}
 	
 	public static synchronized IoContext getInstance() {
-		if (instance == null)
+		if (instance == null) {
+			System.out.println("Creating new IO context.");
 			instance = new IoContext();
+		}
 
 		return instance;
 	}
