@@ -18,8 +18,12 @@ public class ActionBuilder {
 	public long time;
 	
 	public BaseAction build() throws InvalidConfigSetupException {
+		//TODO change this property to exist somewhere else
+		if (pin < 1 || pin > 32) {
+			throw new IllegalArgumentException("The pin " + pin + " is out of range.");
+		}
 		Mcp23017 mcpChip = IoContext.getInstance().getMcpMap().get(IOsupport.getChipIndex(pin));
-		System.out.println("Assigning action to mcp chip: " + mcpChip.toString());
+		System.out.println("Assigning action to mcp chip: '" + mcpChip.toString() + "' pin : " + pin);
 		switch (this.type.toLowerCase()) {
 		case "io":
 			return new DigitalAction(mcpChip.outputPins.get(pin), IoState.getStateByString(set), time, delay);

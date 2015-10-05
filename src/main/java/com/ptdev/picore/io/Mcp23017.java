@@ -13,7 +13,7 @@ public class Mcp23017 {
 	//Address options
 	public enum ByteAddress {
 		ONE(0x20,0),
-		TWO(0x20,1),
+		TWO(0x21,1),
 		THREE(0x20,2),
 		FOUR(0x20,3),
 		FIVE(0x20,4),

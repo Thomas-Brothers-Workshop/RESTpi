@@ -25,13 +25,16 @@ public class Command {
 			IoContext.getInstance();
 			new ConfigReader(seq).getSequence().start();
 		} catch (FileNotFoundException e) {
-			return Response.status(404).entity("One of the files was not found: Stack - " + e.toString()).build();
+			return Response.status(404).entity(e.toString()).build();
 		} catch (YamlException e) {
-			return Response.status(400).entity("Config file was not formatted right: Stack - " + e.toString()).build();
+			return Response.status(400).entity(e.toString()).build();
 		} catch (InvalidConfigSetupException e) {
-			return Response.status(400).entity("Config file was not setup right: Stack - " + e.toString()).build();
-		} catch (ConfigDirectoryException e) {
-			return Response.status(404).entity("Config file did not exist or was not set: Stack - " + e.toString()).build();
+			return Response.status(400).entity(e.toString()).build();
+		} catch (IllegalArgumentException e) {
+			return Response.status(400).entity(e.toString()).build();
+		}
+		catch (ConfigDirectoryException e) {
+			return Response.status(404).entity(e.toString()).build();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Response.status(500).entity("Oh shit! IDK LOLZ. See logs").build();
