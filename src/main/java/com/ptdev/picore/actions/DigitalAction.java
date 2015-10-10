@@ -79,19 +79,24 @@ public class DigitalAction extends BaseAction {
 			case ON:
 				System.out.println("Turning pin '" + pin.getPinIndex() +"' on.");
 				pin.turnOn();
+				break;
 			case OFF:
 				System.out.println("Turning pin '" + pin.getPinIndex() +"' off.");
 				pin.turnOff();
+				break;
 			case TOGGLE:
 				System.out.println("Toggle pin '" + pin.getPinIndex() +"'.");
 				pin.toggle();
+				break;
 			default:
 				System.out.println("Invalid pin state: " + this.state.toString());
+				break;
 		}
 		
 		//If a time was set, wait that amount of time then toggle
 		if (this.actionTime > 0) {
 			try {
+				System.out.println("Sleeping for '"+ actionTime +"' milliseconds");
 				Thread.sleep(this.actionTime);
 				pin.toggle();
 			} catch (Exception e) {
