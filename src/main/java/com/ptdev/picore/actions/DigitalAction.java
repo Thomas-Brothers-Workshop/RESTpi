@@ -77,15 +77,12 @@ public class DigitalAction extends BaseAction {
 		//Switch area
 		switch (this.state) {
 			case ON:
-				System.out.println("Turning pin '" + pin.getPinIndex() +"' on.");
 				pin.turnOn();
 				break;
 			case OFF:
-				System.out.println("Turning pin '" + pin.getPinIndex() +"' off.");
 				pin.turnOff();
 				break;
 			case TOGGLE:
-				System.out.println("Toggle pin '" + pin.getPinIndex() +"'.");
 				pin.toggle();
 				break;
 			default:
