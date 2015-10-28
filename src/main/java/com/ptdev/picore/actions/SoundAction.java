@@ -12,13 +12,13 @@ public class SoundAction extends BaseAction {
 	
 	private final McpOutputPin pin;
 	private final SoundType soundType;
-	private String rootDirectory = ""; //TODO put a directory here
+	private String rootDirectory = "/home/pi/HalloweenPi/WebIOpi/Sound";
 	
 	public enum SoundType {
-		ONE("typeone"),
-		TWO("typetwo"),
-		THREE("typethree"),
-		FOUR("typefour");
+		ONE("Type1"),
+		TWO("Type2"),
+		THREE("Type3"),
+		FOUR("Type4");
 		
 		private String directory;
 		
