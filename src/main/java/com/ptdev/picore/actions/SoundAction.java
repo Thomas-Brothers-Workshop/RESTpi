@@ -2,8 +2,16 @@ package com.ptdev.picore.actions;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import com.ptdev.picore.io.McpOutputPin;
 import com.ptdev.support.SoundPlayer;
@@ -63,22 +71,39 @@ public class SoundAction extends BaseAction {
 
 	@Override
 	public void start() {
-		//Play music, turn on pin, turn off after music
-		SoundPlayer player = new SoundPlayer();
+		
+		AudioInputStream inputStream;
+		Clip clip;
 		try {
-			player.play(getRandomSound());
-		} catch (FileNotFoundException e) {
-			//End action if issue occurs
+			inputStream = AudioSystem.getAudioInputStream(new File(getRandomSound()));
+			AudioFormat format = inputStream.getFormat();
+	        DataLine.Info info = new DataLine.Info(Clip.class, format);
+	        clip = (Clip)AudioSystem.getLine(info);
+	        clip.open(inputStream);
+	        clip.start();
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 			return;
 		}
+//        
+//		//Play music, turn on pin, turn off after music
+//		SoundPlayer player = new SoundPlayer();
+//		try {
+//			player.play(getRandomSound());
+//		} catch (FileNotFoundException e) {
+//			//End action if issue occurs
+//			return;
+//		}
 		
 		//Turn pin on and wait if sound was successful
-		if (!player.isSoundDone()) {
+		if (!clip.isRunning()) {
 			pin.turnOn();
 			
 			//Wait for sound to finish
 			long timeout = System.currentTimeMillis() + 60 * 1000;
-			while (!player.isSoundDone() && System.currentTimeMillis() < timeout) {
+			while (!clip.isRunning() && System.currentTimeMillis() < timeout) {
 				//Do nothing here
 			}
 			
