@@ -66,7 +66,7 @@ public class SoundAction extends BaseAction {
 		}
 		
 		Collections.shuffle(Arrays.asList(children));
-		return rootDirectory + "/" + children[0];
+		return dirPath + "/" + children[0];
 	}
 
 	@Override
