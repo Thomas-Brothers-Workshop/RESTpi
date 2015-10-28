@@ -47,12 +47,12 @@ public class McpOutputPin {
 	//Actions
 	public void turnOn() {
 		System.out.println("Turning pin '" + pinIndex +"' on.");
-		pin.setState(getPinStateByBool(true));
+		pin.setState(getPinStateByBool(false));
 	}
 	
 	public void turnOff() {
 		System.out.println("Turning pin '" + pinIndex +"' off.");
-		pin.setState(getPinStateByBool(false));
+		pin.setState(getPinStateByBool(true));
 	}
 	
 	public void toggle() {
