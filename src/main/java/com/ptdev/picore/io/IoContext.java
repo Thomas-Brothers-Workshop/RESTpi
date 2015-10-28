@@ -14,7 +14,7 @@ public class IoContext {
 	private static IoContext instance;
 	private GpioController gpio;
 	private Mcp23017 chipOne;
-	//private Mcp23017 chipTwo; 
+	private Mcp23017 chipTwo; 
 	private Map<Integer, Mcp23017> mcpMap = new HashMap<Integer, Mcp23017>();;
 	private GpioPinDigitalOutput testPin;
 	
@@ -30,11 +30,11 @@ public class IoContext {
 			testPin.setShutdownOptions(true, PinState.LOW);
 			
 			chipOne = new Mcp23017(gpio, ByteAddress.ONE, "one").setAllPinsOutput();
-			//chipTwo = new Mcp23017(GpioFactory.getInstance(), ByteAddress.TWO, "one").setAllPinsOutput();
+			chipTwo = new Mcp23017(GpioFactory.getInstance(), ByteAddress.TWO, "one").setAllPinsOutput();
 			
 			//Map
 			mcpMap.put(1, chipOne);
-//			mcpMap.put(2, chipTwo);
+			mcpMap.put(2, chipTwo);
 		} catch (NullPointerException e) {
 			System.err.println("Looks like I couldn't find the IO expanders.");
 			e.printStackTrace();
