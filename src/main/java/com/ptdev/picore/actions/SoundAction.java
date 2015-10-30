@@ -72,38 +72,38 @@ public class SoundAction extends BaseAction {
 	@Override
 	public void start() {
 		
-		AudioInputStream inputStream;
-		Clip clip;
-		try {
-			inputStream = AudioSystem.getAudioInputStream(new File(getRandomSound()));
-			AudioFormat format = inputStream.getFormat();
-	        DataLine.Info info = new DataLine.Info(Clip.class, format);
-	        clip = (Clip)AudioSystem.getLine(info);
-	        clip.open(inputStream);
-	        clip.start();
-			
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			return;
-		}
-//        
-//		//Play music, turn on pin, turn off after music
-//		SoundPlayer player = new SoundPlayer();
+//		AudioInputStream inputStream;
+//		Clip clip;
 //		try {
-//			player.play(getRandomSound());
-//		} catch (FileNotFoundException e) {
-//			//End action if issue occurs
+//			inputStream = AudioSystem.getAudioInputStream(new File(getRandomSound()));
+//			AudioFormat format = inputStream.getFormat();
+//	        DataLine.Info info = new DataLine.Info(Clip.class, format);
+//	        clip = (Clip)AudioSystem.getLine(info);
+//	        clip.open(inputStream);
+//	        clip.start();
+//			
+//		} catch (Exception e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
 //			return;
 //		}
+        
+		//Play music, turn on pin, turn off after music
+		SoundPlayer player = new SoundPlayer();
+		try {
+			player.play(getRandomSound());
+		} catch (FileNotFoundException e) {
+			//End action if issue occurs
+			return;
+		}
 		
 		//Turn pin on and wait if sound was successful
-		if (!clip.isRunning()) {
+		if (!player.isSoundDone()) {
 			pin.turnOn();
 			
 			//Wait for sound to finish
 			long timeout = System.currentTimeMillis() + 60 * 1000;
-			while (!clip.isRunning() && System.currentTimeMillis() < timeout) {
+			while (!player.isSoundDone() && System.currentTimeMillis() < timeout) {
 				//Do nothing here
 			}
 			

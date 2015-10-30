@@ -30,14 +30,17 @@ public class SoundPlayer implements LineListener {
      * @param audioFilePath Path of the audio file.
      */
     public void play(String audioFilePath) {
-    	System.out.println("Starting sound file: " + audioFilePath);
+    	
         File audioFile = new File(audioFilePath);
         
         //If file doesn't exist, exit player and tell action play is done
         if (!audioFile.exists()) {
+        	System.out.println("File did not exist: " + audioFilePath);
         	this.playCompleted = true;
         	return;
         }
+        
+        System.out.println("Starting sound file: " + audioFilePath);
         try {
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
             AudioFormat format = audioStream.getFormat();
