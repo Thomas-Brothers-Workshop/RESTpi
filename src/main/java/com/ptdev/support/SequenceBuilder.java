@@ -17,6 +17,7 @@ public class SequenceBuilder {
 		}
 		
 		System.out.println(String.format("Building sequence '%s' with %d actions", name, actions.length));
+		SequenceContext.getInstance().trackSequence(name);
 		for(int i = 0; i < actions.length; i++) {
 			seq.addAction(actions[i].build());
 		}
