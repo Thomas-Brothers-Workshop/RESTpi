@@ -66,6 +66,7 @@ public class SoundAction extends BaseAction {
 	public void start() {
 		//Check if action is active
 		if(SequenceContext.getInstance().isActionRunning(actionKey)) {
+			System.out.println("Action already running: " + actionKey);
 			return;
 		}
 		

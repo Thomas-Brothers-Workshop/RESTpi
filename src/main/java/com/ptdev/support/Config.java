@@ -16,5 +16,6 @@ public class Config implements ServletContextListener {
     }
     public void contextDestroyed(ServletContextEvent event) {
         // Do stuff during webapp's shutdown.
+    	IoContext.getInstance().getGPIO().shutdown();
     }
 }

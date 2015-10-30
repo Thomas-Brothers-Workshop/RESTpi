@@ -57,4 +57,8 @@ public class IoContext {
 	public GpioPinDigitalOutput getTestPin() {
 		return testPin;
 	}
+	
+	public GpioController getGPIO() {
+		return gpio;
+	}
 }
