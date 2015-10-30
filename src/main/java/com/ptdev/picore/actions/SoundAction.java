@@ -64,15 +64,9 @@ public class SoundAction extends BaseAction {
 
 	@Override
 	public void start() {
-		//Check if action is active
-		if(SequenceContext.getInstance().isActionRunning(actionKey)) {
-			System.out.println("Action already running: " + actionKey);
-			return;
-		}
 		
 		//Report
 		System.out.println("Sound type: " + soundType.toString() + " on pin " + pin.getPinIndex());
-		SequenceContext.getInstance().trackAction(actionKey);
 		
 		//Play music, turn on pin, turn off after music
 		SoundPlayer player = new SoundPlayer();
@@ -96,8 +90,6 @@ public class SoundAction extends BaseAction {
 			//Turn off pin
 			pin.turnOff();
 		}
-		
-		//Forget action
-		SequenceContext.getInstance().forgetAction(actionKey);
+		checkForEnd();
 	}
 }

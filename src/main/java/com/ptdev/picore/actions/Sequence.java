@@ -32,10 +32,20 @@ public class Sequence {
 	
 	//Execution
 	public void start() {
+		//Ignore empty sequences
+		if(sequence.isEmpty()) {
+			return;
+		}
+		
 		//Run in sequence
 		System.out.println(String.format("Starting '%s' sequence", this.sequenceName));
 		for(int a = 0; a < sequence.size(); a++) {
-			sequence.get(a).start();
+			//Special case for last thread
+			boolean isEnd = false;
+			if(a == sequence.size() - 1) {
+				isEnd = true;
+			}
+			sequence.get(a).setParentName(sequenceName).setEndOfAction(isEnd).start();
 		}
 	}
 }

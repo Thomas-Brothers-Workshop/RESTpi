@@ -10,6 +10,8 @@ public class ActionRunner implements Runnable {
 	private String name;
 	private Thread t;
 	private final BaseAction action;
+	private boolean isEnd;
+	private String parentName;
 	
 	//Construct
 	public ActionRunner(String runnerName, BaseAction runAction) {
@@ -17,10 +19,20 @@ public class ActionRunner implements Runnable {
 		this.action = runAction;
 	}
 	
+	public ActionRunner setEndOfAction(boolean isEnd) {
+		this.isEnd = isEnd;
+		return this;
+	}
+	
+	public ActionRunner setParentName(String name) {
+		this.parentName = name;
+		return this;
+	}
+	
 	@Override
 	public void run() {
 		//Start action
-		this.action.start();
+		this.action.setParentName(parentName).setEndOfAction(isEnd).start();
 	}
 	
 	/**

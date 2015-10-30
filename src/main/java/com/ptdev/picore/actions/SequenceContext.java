@@ -6,10 +6,10 @@ import java.util.List;
 
 public class SequenceContext {
 	private static SequenceContext instance;
-	private List<String> currAction;
+	private List<String> currSequence;
 	
 	private SequenceContext() {
-		currAction = new ArrayList<String>(); 
+		currSequence = new ArrayList<String>(); 
 	}
 	
 	public static synchronized SequenceContext getInstance() {
@@ -21,20 +21,20 @@ public class SequenceContext {
 		return instance;
 	}
 	
-	public void trackAction(String action) {
-		if (!isActionRunning(action)) {
-			currAction.add(action);
+	public void trackSequence(String sequence) {
+		if (!isSequenceRunning(sequence)) {
+			currSequence.add(sequence);
 		}
 	}
 	
-	public void forgetAction(String action) {
-		if (isActionRunning(action)) {
-			currAction.remove(action);
+	public void forgetSequence(String sequence) {
+		if (isSequenceRunning(sequence)) {
+			currSequence.remove(sequence);
 		}
 	}
 	
-	public boolean isActionRunning(String action) {
-		return currAction.contains(action);
+	public boolean isSequenceRunning(String sequence) {
+		return currSequence.contains(sequence);
 	}
 	
 }

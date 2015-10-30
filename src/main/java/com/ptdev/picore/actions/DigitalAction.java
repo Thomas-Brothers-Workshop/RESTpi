@@ -59,11 +59,6 @@ public class DigitalAction extends BaseAction {
 
 	@Override
 	public void start() {
-		//Check if action is active
-		if(SequenceContext.getInstance().isActionRunning(actionKey)) {
-			System.out.println("Action already running: " + actionKey);
-			return;
-		}
 		
 		//Report
 		System.out.println(String.format("Action | PIN: %d | STATE: %s | TIME: %d | DELAY: %d", 
@@ -71,7 +66,6 @@ public class DigitalAction extends BaseAction {
 				state.toString(),
 				actionTime, 
 				actionDelay));
-		SequenceContext.getInstance().trackAction(actionKey);
 		
 		//Delay
 		try {
@@ -108,9 +102,7 @@ public class DigitalAction extends BaseAction {
 				pin.turnOff();
 			} 
 		}
-		
-		//Forget action
-		SequenceContext.getInstance().forgetAction(actionKey);
+		checkForEnd();
 	}
 
 	//Properties

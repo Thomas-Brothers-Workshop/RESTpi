@@ -16,6 +16,8 @@ public abstract class BaseAction {
 	protected long actionTime;
 	protected long actionDelay;
 	protected String actionKey;
+	protected boolean isEnd;
+	protected String parentSequenceName;
 	
 	//Get Info
 	public ActionType getActionType() {
@@ -26,6 +28,22 @@ public abstract class BaseAction {
 	}
 	public String getActionKey() {
 		return actionKey;
+	}
+	
+	public BaseAction setEndOfAction(boolean isEnd) {
+		this.isEnd = isEnd;
+		return this;
+	}
+	
+	public BaseAction setParentName(String name) {
+		this.parentSequenceName = name;
+		return this;
+	}
+	
+	public void checkForEnd() {
+		if(this.isEnd) {
+			SequenceContext.getInstance().forgetSequence(parentSequenceName);
+		}
 	}
 	
 	/**
