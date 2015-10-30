@@ -2,16 +2,8 @@ package com.ptdev.picore.actions;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
-
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 import com.ptdev.picore.io.McpOutputPin;
 import com.ptdev.support.SoundPlayer;
@@ -54,6 +46,7 @@ public class SoundAction extends BaseAction {
 		this.actionType = ActionType.SOUND;
 		this.pin = pin;
 		this.soundType = type;
+		this.actionKey = "SOUND-" + this.pin.getPinName();
 	}
 	
 	public String getRandomSound() throws FileNotFoundException {
@@ -71,23 +64,15 @@ public class SoundAction extends BaseAction {
 
 	@Override
 	public void start() {
+		//Check if action is active
+		if(SequenceContext.getInstance().isActionRunning(actionKey)) {
+			return;
+		}
 		
-//		AudioInputStream inputStream;
-//		Clip clip;
-//		try {
-//			inputStream = AudioSystem.getAudioInputStream(new File(getRandomSound()));
-//			AudioFormat format = inputStream.getFormat();
-//	        DataLine.Info info = new DataLine.Info(Clip.class, format);
-//	        clip = (Clip)AudioSystem.getLine(info);
-//	        clip.open(inputStream);
-//	        clip.start();
-//			
-//		} catch (Exception e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//			return;
-//		}
-        
+		//Report
+		System.out.println("Sound type: " + soundType.toString() + " on pin " + pin.getPinIndex());
+		SequenceContext.getInstance().trackAction(actionKey);
+		
 		//Play music, turn on pin, turn off after music
 		SoundPlayer player = new SoundPlayer();
 		try {
@@ -110,5 +95,8 @@ public class SoundAction extends BaseAction {
 			//Turn off pin
 			pin.turnOff();
 		}
+		
+		//Forget action
+		SequenceContext.getInstance().forgetAction(actionKey);
 	}
 }

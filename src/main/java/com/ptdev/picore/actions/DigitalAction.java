@@ -54,17 +54,23 @@ public class DigitalAction extends BaseAction {
 		this.state = setState;
 		this.actionTime = time;
 		this.actionDelay = delay;
-		this.actionKey = "IO-" + time;
+		this.actionKey = "IO-" + pin.getPinName();
 	}
 
 	@Override
 	public void start() {
+		//Check if action is active
+		if(SequenceContext.getInstance().isActionRunning(actionKey)) {
+			return;
+		}
+		
 		//Report
 		System.out.println(String.format("Action | PIN: %d | STATE: %s | TIME: %d | DELAY: %d", 
 				pin.getPinIndex(), 
 				state.toString(),
 				actionTime, 
 				actionDelay));
+		SequenceContext.getInstance().trackAction(actionKey);
 		
 		//Delay
 		try {
@@ -101,6 +107,9 @@ public class DigitalAction extends BaseAction {
 				pin.turnOff();
 			} 
 		}
+		
+		//Forget action
+		SequenceContext.getInstance().forgetAction(actionKey);
 	}
 
 	//Properties
