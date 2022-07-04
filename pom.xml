@@ -26,7 +26,7 @@
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jackson-provider</artifactId>
-			<version>3.0.4.Final</version>
+			<version>3.15.3.Final</version>
 		</dependency>
 		
 		<dependency>
